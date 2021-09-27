@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import cucumberAutomation.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,19 +10,22 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.CruiseSearchPage;
 import pageObjects.HomePage;
+import pageObjects.ItineraryPage;
 
 import java.io.IOException;
 
 public class MyStepdefs {
     public WebDriver driver;
-    HomePage home=new HomePage();
-    CruiseSearchPage search=new CruiseSearchPage();
+    private HomePage home = new HomePage();
+    private CruiseSearchPage search = new CruiseSearchPage();
+    private ItineraryPage itinerary=new ItineraryPage();
+
 
     @Given("User lands on carnival page")
     public void userLandsOnCarnivalPage() throws IOException {
-        this.driver= Base.getDriver();
+        this.driver = Base.getDriver();
         driver.manage().window().maximize();
-        System.out.println("Opening "+home.getPageTitle()+ " page.");
+        System.out.println("Opening " + home.getPageTitle() + " page.");
         Assert.assertEquals(home.getPageTitle(),
                 "Cruises | Carnival Cruise Deals: Caribbean, Bahamas, Alaska, Mexico",
                 "User is not opening correct page");
@@ -38,7 +42,7 @@ public class MyStepdefs {
     }
 
     @And("User clicks on Sail To filter")
-    public void userClicksOnSailToFilter() {
+    public void userClicksOnSailToFilter() throws InterruptedException {
         home.doClickSailTo();
     }
 
@@ -53,7 +57,7 @@ public class MyStepdefs {
     }
 
     @And("User clicks on six to nine Days button")
-    public void userClicksOnSixToNineDaysButton() {
+    public void userClicksOnSixToNineDaysButton() throws InterruptedException {
         home.doClickSixNineDays();
     }
 
@@ -65,7 +69,7 @@ public class MyStepdefs {
     @Then("User lands on cruise search page")
     public void userLandsOnCruiseSearchPage() throws InterruptedException {
         //Thread.sleep(3000);
-        System.out.println("Opening "+search.getPageTitle()+ " page.");
+        System.out.println("Opening " + search.getPageTitle() + " page.");
         Assert.assertEquals(search.getPageTitle(),
                 "Cruise Search | Find Cruises for 2021-2024 | Carnival Cruise Line",
                 "User is not opening correct page");
@@ -94,5 +98,34 @@ public class MyStepdefs {
     @Then("User verifies that the prices are from cheapest to expensive")
     public void userVerifiesThatThePricesAreFromCheapestToExpensive() {
         search.verifyPricesOrder();
+    }
+
+
+    @After
+    public void afterSeleniumTest() {
+        driver.close();
+    }
+
+    @When("User clicks on a trip")
+    public void userClicksOnATrip() {
+        search.doCLickOnItemPhoto();
+    }
+
+    @Then("User lands on itinerary page")
+    public void userLandsOnItineraryPage() {
+        System.out.println("Opening " + search.getPageTitle() + " page.");
+        Assert.assertEquals(search.getPageTitle(),
+                "7 Day Bahamas Cruise From Baltimore | Carnival Cruise Line",
+                "User is not opening correct page");
+    }
+
+    @Then("User verify additional info about every day")
+    public void userVerifyAdditionalInfoAboutEveryDay() throws InterruptedException {
+        itinerary.verifyAdditionalInfoEveryDay();
+    }
+
+    @Then("User verify book now is placed into the page")
+    public void userVerifyBookNowIsPlacedIntoThePage() {
+        itinerary.verifyBookNowIsPlacedIntoThePage();
     }
 }

@@ -17,6 +17,11 @@ public class CruiseSearchPage extends Base {
     private String initialResults;
     private String finalResults;
     private final By prices=By.xpath("//span[@class='vrl-item__price-value ng-binding']");
+    private final By itemPhoto=By.cssSelector("a.vrl-item__photo");
+
+    public WebElement getItemPhoto() {
+        return getElement(itemPhoto);
+    }
 
     public List<WebElement> getPrices() {
         return getElements(prices);
@@ -90,8 +95,7 @@ public class CruiseSearchPage extends Base {
         Assert.assertFalse(getFinalResults().contains(getInitialResults()));
     }
 
-    public void verifyPricesOrder()
-    {
+    public void verifyPricesOrder() {
         boolean flagOrder=true;
         List<WebElement> elements=getPrices();
         List<Integer> values=new ArrayList<>();
@@ -110,4 +114,8 @@ public class CruiseSearchPage extends Base {
         Assert.assertTrue(flagOrder);
     }
 
+    public void doCLickOnItemPhoto()
+    {
+        getItemPhoto().click();
+    }
 }

@@ -75,4 +75,17 @@ public class Base {
             e.printStackTrace();
         }return null;
     }
+
+    public WebElement getElementWithScope(WebElement scope, By locator)
+    {
+        WebElement element;
+        try{
+            element=scope.findElement(locator);
+            return element;
+        } catch (Exception e)
+        {
+            System.out.println("Not able to find element");
+            e.printStackTrace();
+        } return null;
+    }
 }

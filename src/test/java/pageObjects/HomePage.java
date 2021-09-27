@@ -10,7 +10,7 @@ public class HomePage extends Base {
     private final By noThankYou= By.cssSelector("div.vifp-no-thankyou");
     private final By closeIconBanner=By.cssSelector("svg.cp-banner__icon-close--com");
     private final By sailTo=By.xpath("//span[@class='cdc-filters-tab-link-chevron']");
-    private final By theBahamas=By.xpath("(//button[@data-tealium='cdc-filter-button'])[2]");
+    private final By theBahamas=By.xpath("//button[text()[normalize-space()='The Bahamas']]");
     private final By duration=By.xpath("//span[text()='Duration']");
     private final By sixNineDays=By.xpath("//button[text()[normalize-space()='6 - 9 Days']]");
     private final By searchCruises=By.xpath("//span[@class='cdc-filters-search-cta-title ng-binding']");
@@ -57,11 +57,13 @@ public class HomePage extends Base {
         getCloseIconBanner().click();
     }
 
-    public void doClickSailTo() {
+    public void doClickSailTo() throws InterruptedException {
+        Thread.sleep(3000);
         getSailTo().click();
     }
 
     public void doClickOnTheBahamas() throws InterruptedException {
+        Thread.sleep(3000);
         getTheBahamas().click();
     }
 
@@ -70,8 +72,8 @@ public class HomePage extends Base {
         getDuration().click();
     }
 
-    public void doClickSixNineDays()
-    {
+    public void doClickSixNineDays() throws InterruptedException {
+        Thread.sleep(3000);
         getSixNineDays().click();
     }
 
