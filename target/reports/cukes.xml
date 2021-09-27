@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="90.428">
+<testcase classname="Visualize options select one and learn more about the trip" name="As a user I want to choose one sail and learn more about the trip," time="90.174">
+<system-out><![CDATA[Given User lands on carnival page...........................................passed
+When User closes offer modal................................................passed
+And User closes cookie banner...............................................passed
+And User clicks on Sail To filter...........................................passed
+And User clicks on The Bahamas button.......................................passed
+And User clicks on Duration to filter.......................................passed
+And User clicks on six to nine Days button..................................passed
+And User clicks on search cruises...........................................passed
+Then User lands on cruise search page.......................................passed
+When User clicks on a trip..................................................passed
+Then User lands on itinerary page...........................................passed
+Then User verify additional info about every day............................passed
+Then User verify book now is placed into the page...........................passed
+]]></system-out>
+</testcase>
+</testsuite>
